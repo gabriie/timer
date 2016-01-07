@@ -1,12 +1,44 @@
-*.class
+package timer;
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-# Package Files #
-*.jar
-*.war
-*.ear
+public class TimerEx extends JPanel implements ActionListener{
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+	JLabel l;
+    Timer t;
+    int x;
+    int y;
+    
+	
+TimerEx(){
+
+	ImageIcon img= new ImageIcon("Mario.gif");
+	l=new JLabel(img);
+	
+	add(l);
+	l.setLocation(x, y);
+	setBackground(Color.white);
+	t=new Timer(100,this);
+	t.start();
+}
+
+public void actionPerformed(ActionEvent e){
+	x+=20;
+	if (x>600)x=50;
+	l.setLocation(x,y);
+}
+
+
+public static void main(String args []){
+	JFrame frame= new JFrame("Timer Example");
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.setSize(800,800);
+	TimerEx pane=new TimerEx();
+	frame.setContentPane(pane);
+	frame.setVisible(true);;
+	
+}
+
+}
